@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Story {
+class Story {
     private Scene startScene;
     private Character player;
     private Scanner scanner;
@@ -12,25 +12,13 @@ public class Story {
     }
 
     public void start() {
-        play();
-    }
-
-    public void play() {
         Scene currentScene = startScene;
         while (currentScene != null) {
             currentScene.displayScene();
-            System.out.println("(Ketik INFO untuk melihat status karakter)");
+            System.out.print("\nMasukkan pilihan (A/B/C): ");
             String choice = scanner.nextLine();
-
-            if (choice.equalsIgnoreCase("INFO")) {
-                System.out.println("Nama: " + player.getName());
-                System.out.println("Health: " + player.getHealth());
-                System.out.println("XP: " + player.getXP());
-                continue;
-            }
-            
             currentScene = currentScene.makeChoice(choice, player);
         }
-        System.out.println("Permainan selesai.");
+        System.out.println("\nPermainan selesai.");
     }
 }

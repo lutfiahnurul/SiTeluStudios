@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Scene {
+class Scene {
     private String description;
     private String choiceA, choiceB, choiceC;
     private Scene nextSceneA, nextSceneB, nextSceneC;
@@ -26,28 +26,34 @@ public class Scene {
     }
 
     public void displayScene() {
-        System.out.println(description);
+        System.out.println("\n" + description);
         System.out.println("A: " + choiceA);
         System.out.println("B: " + choiceB);
         System.out.println("C: " + choiceC);
+        System.out.println("(Ketik INFO untuk melihat status karakter)");
     }
 
     public Scene makeChoice(String choice, Character player) {
-        switch (choice.toUpperCase()) {
-            case "A":
+        switch (choice.toLowerCase()) {
+            case "a":
                 player.takeDamage(damageA);
                 player.addXP(XPA);
                 return nextSceneA;
-            case "B":
+            case "b":
                 player.takeDamage(damageB);
                 player.addXP(XPB);
                 return nextSceneB;
-            case "C":
+            case "c":
                 player.takeDamage(damageC);
                 player.addXP(XPC);
                 return nextSceneC;
+            case "info":
+                System.out.println("\nStatus Karakter: " + player.getName());
+                System.out.println("Health: " + player.getHealth());
+                System.out.println("XP: " + player.getXP());
+                return this;
             default:
-                System.out.println("Pilihan tidak valid!");
+                System.out.println("\nPilihan tidak valid. Coba lagi.");
                 return this;
         }
     }

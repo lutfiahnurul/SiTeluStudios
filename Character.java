@@ -1,19 +1,22 @@
-public class Character {
+import java.util.Scanner;
+
+class Character {
     private String name;
     private int health;
     private int XP;
-
-    private String item;
 
     public Character(String name, int health) {
         this.name = name;
         this.health = health;
         this.XP = 0;
-        this.item = "";
     }
 
     public void takeDamage(int damage) {
         this.health -= damage;
+        if (this.health <= 0) {
+            System.out.println("\n" + name + " kehabisan health! GAME OVER!");
+            System.exit(0);
+        }
     }
 
     public void addXP(int additionalXP) {
@@ -30,13 +33,5 @@ public class Character {
 
     public int getXP() {
         return XP;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
     }
 }
